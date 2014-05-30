@@ -1,0 +1,23 @@
+    private void ratePrompt() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.congratulations)
+                .setMessage(getString(R.string.congratulate_and_ask_to_rate))
+                .setPositiveButton(R.string.rate_it, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Uri uri = Uri.parse("market://details?id=com.fruityplay.eatables");
+                        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                        try {
+                            startActivity(goToMarket);
+                        } catch (ActivityNotFoundException e) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.fruityplay.eatables")));
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.no_thanks, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .show();
+    }
