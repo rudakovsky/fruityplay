@@ -1,0 +1,10 @@
+    SharedPreferences mPreferences;
+    mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    if (score > 29) {
+            boolean ratePrompted = mPreferences.getBoolean("ratePrompted", false);
+            if (!ratePrompted) {
+                ratePrompt();
+                editor.putBoolean("ratePrompted", true);
+                editor.commit();
+            }
+    }
